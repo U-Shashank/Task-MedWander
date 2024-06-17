@@ -26,7 +26,8 @@ try {
         "Content-Disposition",
         "attachment;filename=" + "users.xlsx"
     )
-    workbook.xlsx.write(res)
+    const buffer = await workbook.xlsx.writeBuffer();
+    res.send(buffer);
 } catch (error) {
     console.log(error);
 }
