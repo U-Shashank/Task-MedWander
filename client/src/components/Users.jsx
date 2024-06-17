@@ -1,9 +1,11 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 
 const Users = ({ users }) => {
+  const [downloading, setDownloading] = useState(false)
   const download = async () => {
     try {
+      setDownloading(true)
       const response = await axios.get(`${import.meta.env.VITE_HOST_URI}/excel`, {
         responseType: 'blob',
       });
@@ -17,6 +19,8 @@ const Users = ({ users }) => {
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.log(error);
+    } finally {
+      setDownloading(false)
     }
   };
   
@@ -25,7 +29,7 @@ const Users = ({ users }) => {
     <div className="flex flex-col items-center">
       <div className="overflow-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-          <div className="overflow-hidden shadow-md rounded-md  overflow-y-scroll max-h-96 sm:max-h-108">
+          <div className="overflow-hidden shadow-md rounded-md  overflow-y-scroll max-h-64 sm:max-h-96">
             <table className="min-w-full">
               <thead className="bg-gray-200 border-b">
                 <tr>
@@ -50,7 +54,7 @@ const Users = ({ users }) => {
                 </tr>
               </thead>
               
-              <tbody className="max-h-96 overflow-y-scroll">
+              <tbody>
                 {users.map((user) => (
                   <tr
                     key={user?.id}
@@ -73,7 +77,7 @@ const Users = ({ users }) => {
         </div>
       </div>
       <div className="mt-4 flex justify-end">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md flex items-cente" onClick={download}>
+        <button disabled = {downloading} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md flex items-cente disabled:bg-gray-700" onClick={download}>
           Download xlsx
         </button>
       </div>
