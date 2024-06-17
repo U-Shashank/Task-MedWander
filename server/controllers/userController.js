@@ -16,4 +16,23 @@ const createUser = async (req, res) => {
     }
 }
 
-module.exports = createUser
+const getUsers = async (req, res) => {
+    try {
+        const {rows} = await pool.query('SELECT * FROM users;')
+        res.status(200).json({
+            success: true,
+            msg: 'users fetched',
+            rows
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: "Something went wrong"
+        })
+    }
+}
+
+module.exports = {
+    createUser,
+    getUsers
+}

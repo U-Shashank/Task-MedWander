@@ -3,7 +3,7 @@ import Codes from './Codes'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
 
-const Form = ({ formType, setFormType }) => {
+const Form = ({ formType, setFormType, getUsers }) => {
   const [code, setCode] = React.useState('+91')
   const [dropDown, setDropDown] = React.useState(false)
 
@@ -26,6 +26,7 @@ const Form = ({ formType, setFormType }) => {
         phone: `${code} ${data.phone}`,
         formType: formType,
       })
+      getUsers()
       console.log(res)
     } catch (error) {
       console.log(error)
@@ -47,7 +48,7 @@ const Form = ({ formType, setFormType }) => {
                 message: 'Please enter a valid name'
               }
             })}
-            className="px-4 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="px-4 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full"
             placeholder="Name"
           />
           {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
