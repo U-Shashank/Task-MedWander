@@ -1,0 +1,20 @@
+{
+  "name": "task-medwander",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npm start --prefix ./server",
+    "build server": "npm i --prefix ./server",
+    "client": "npm run dev --prefix ./client",
+    "build client": "npm i --prefix ./client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "concurrently \"npm run build server\" \"npm run build client\""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
