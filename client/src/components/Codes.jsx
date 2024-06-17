@@ -4,9 +4,8 @@ import codes from './codes-info'
 const Codes = ({ setCode, dropDown }) => {
   return (
     <div
-      className={`absolute top-10 left-0 z-10 bg-white rounded-md shadow-md overflow-hidden transition-all duration-300 ${
-        !dropDown ? 'opacity-0 invisible' : 'opacity-100 visible'
-      }`}
+      className={`absolute top-10 left-0 z-10 bg-white rounded-md shadow-md overflow-hidden transition-all duration-300 ${!dropDown ? 'opacity-0 invisible' : 'opacity-100 visible'
+        }`}
     >
       {codes.map((item) => (
         <div

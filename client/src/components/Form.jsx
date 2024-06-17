@@ -8,7 +8,7 @@ const Form = ({ formType, setFormType, getUsers }) => {
   const [code, setCode] = React.useState('+91')
   const [dropDown, setDropDown] = React.useState(false)
 
-  const { register, handleSubmit, formState: { errors, isSubmitting }, setValue, reset, isS } = useForm()
+  const { register, handleSubmit, formState: { errors, isSubmitting }, setValue, getValues, reset } = useForm()
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'))
@@ -61,7 +61,7 @@ const Form = ({ formType, setFormType, getUsers }) => {
                 value: /^[a-zA-Z\s'-]+$/,
                 message: 'Please enter a valid name'
               },
-              onChange: handleSubmit(storeUserData)
+              onChange: (e) => storeUserData({ name: e.target.value, phone: getValues('phone') })
             })}
             className="px-4 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full"
             placeholder="Name"
@@ -112,7 +112,7 @@ const Form = ({ formType, setFormType, getUsers }) => {
                 }
                 return true
               },
-              onChange: handleSubmit(storeUserData)
+              onChange: (e) => storeUserData({ name: e.target.value, phone: getValues('phone') })
             })}
             className="px-4 py-2 border border-gray-300 rounded-md w-full bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             placeholder="Phone Number"
@@ -120,7 +120,7 @@ const Form = ({ formType, setFormType, getUsers }) => {
         </div>
         {errors.phone && <p className="text-red-500 text-sm -mt-2">{errors.phone.message}</p>}
         <button
-        disabled = {isSubmitting}
+          disabled={isSubmitting}
           type="submit"
           className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300 disabled:bg-gray-700"
         >

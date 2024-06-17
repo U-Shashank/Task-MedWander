@@ -23,7 +23,7 @@ const Users = ({ users }) => {
       setDownloading(false)
     }
   };
-  
+
 
   return (
     <div className="flex flex-col items-center">
@@ -53,7 +53,7 @@ const Users = ({ users }) => {
                   </th>
                 </tr>
               </thead>
-              
+
               <tbody>
                 {users.map((user) => (
                   <tr
@@ -77,7 +77,7 @@ const Users = ({ users }) => {
         </div>
       </div>
       <div className="mt-4 flex justify-end">
-        <button disabled = {downloading} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md flex items-cente disabled:bg-gray-700" onClick={download}>
+        <button disabled={downloading} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md flex items-cente disabled:bg-gray-700" onClick={download}>
           Download xlsx
         </button>
       </div>
